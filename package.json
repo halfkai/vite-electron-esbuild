@@ -1,0 +1,20 @@
+{
+  "name": "ecap",
+  "version": "0.1.0",
+  "description": "a screen capture tool based on electron",
+  "main": "main.ts",
+  "repository": "https://github.com/kai475/ecap.git",
+  "author": "kai475",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "yarn build && electron ./dist/main.js"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "electron": "15.2.0",
+    "eslint": "^8.0.1",
+    "typescript": "^4.4.4"
+  }
+}

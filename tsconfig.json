@@ -1,7 +1,28 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": false,
+    "strict": true,
+    "jsx": "react-jsx",
+    /* module resolution start */
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    /* module resolution end */
+    /* coding constraints start */
+    "noEmit": true,
     "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    /* coding constraints end */
     "sourceMap": true,
     "outDir": "dist",
     "baseUrl": ".",
@@ -9,7 +30,5 @@
       "*": ["node_modules/*"]
     }
   },
-  "include": [
-    "src/**/*",
-  ]
+  "exclude": ["test", "dist"]
 }

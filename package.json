@@ -2,19 +2,45 @@
   "name": "ecap",
   "version": "0.1.0",
   "description": "a screen capture tool based on electron",
-  "main": "main.ts",
   "repository": "https://github.com/kai475/ecap.git",
   "author": "kai475",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "start": "yarn build && electron ./dist/main.js"
+    "dev": "",
+    "dev:renderer": "vite --config packages/renderer/vite.config.ts",
+    "dev:main": "cross-env NODE_ENV=development node -r esbuild-register ./scripts/",
+    "build:renderer": "vite build --config packages/renderer/vite.config.ts",
+    "build:main": "cross-env NODE_ENV=development node -r esbuild-register ./scripts/build"
+  },
+  "browserslist": [
+    "Chrome 94"
+  ],
+  "lint-staged": {
+    "*.{js,ts,vue}": "eslint --cache --fix"
+  },
+  "dependencies": {
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
   },
   "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
+    "@vitejs/plugin-react": "^1.0.0",
+    "child_process": "^1.0.2",
+    "cross-env": "^7.0.3",
     "electron": "15.2.0",
-    "eslint": "^8.0.1",
-    "typescript": "^4.4.4"
+    "esbuild-register": "^3.0.0",
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.26.1",
+    "lint-staged": "^11.2.3",
+    "stream": "^0.0.2",
+    "typescript": "^4.4.4",
+    "vite": "^2.6.4"
   }
 }

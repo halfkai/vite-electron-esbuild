@@ -6,9 +6,9 @@
   "author": "kai475",
   "license": "MIT",
   "scripts": {
-    "dev": "",
-    "dev:renderer": "vite --config packages/renderer/vite.config.ts",
-    "dev:main": "cross-env NODE_ENV=development node -r esbuild-register ./scripts/",
+    "dev": "rimraf dist && cross-env NODE_ENV=development node -r esbuild-register ./scripts/dev",
+    "dev:renderer": "cross-env NODE_ENV=development node -r esbuild-register ./scripts/run-vite",
+    "dev:main": "rimraf dist && cross-env NODE_ENV=development node -r esbuild-register ./scripts/run-electron",
     "build:renderer": "vite build --config packages/renderer/vite.config.ts",
     "build:main": "cross-env NODE_ENV=development node -r esbuild-register ./scripts/build"
   },
@@ -28,7 +28,9 @@
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
     "@vitejs/plugin-react": "^1.0.0",
+    "chalk": "^4.1.2",
     "child_process": "^1.0.2",
+    "concurrently": "^6.3.0",
     "cross-env": "^7.0.3",
     "electron": "15.2.0",
     "esbuild-register": "^3.0.0",
@@ -38,7 +40,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.26.1",
+    "fast-glob": "^3.2.7",
     "lint-staged": "^11.2.3",
+    "rimraf": "^3.0.2",
     "stream": "^0.0.2",
     "typescript": "^4.4.4",
     "vite": "^2.6.4"

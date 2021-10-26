@@ -1,33 +1,33 @@
-import { desktopCapturer } from 'electron'
+import { BrowserWindow, app } from 'electron'
+import path from 'path'
 
-const startCapture = (displayMediaOptions?: DisplayMediaStreamConstraints) => {
-  desktopCapturer.getSources({ types: ['screen'] }).then(sources => {
-    for (const source of sources) {
-      console.log(source)
-      if (source.name === 'Electron') {
-        return navigator.mediaDevices.getDisplayMedia(
-          displayMediaOptions
-        ).then((stream) => {
-          handleStream(stream)
-        }).catch((err) => {
-          handleError(err)
-          return null
-        })
-      }
+const isDevelopment = process.env.NODE_ENV === 'development'
+
+let mainWindow: BrowserWindow | null
+
+const createWindow = () => {
+  mainWindow = new BrowserWindow({
+    width: 1000,
+    height: 800,
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true,
+      preload: path.resolve(__dirname, '../preload/index.js')
     }
+  })
+  if (isDevelopment) {
+    process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1'
+    mainWindow.webContents.openDevTools()
+    mainWindow.loadURL(process.env.VITE_HOST || 'http://localhost:5000')
+  } else {
+    mainWindow.loadURL('app://../renderer/index.html')
+  }
+
+  mainWindow.on('closed', () => {
+    mainWindow = null
   })
 }
 
-function handleStream (stream: MediaStream) {
-  const video = document.querySelector('video')
-  if (video) {
-    video.srcObject = stream
-    video.onloadedmetadata = (e) => video.play()
-  }
-}
-
-function handleError (e: Error) {
-  console.error('Error: ', e)
-}
-
-startCapture()
+app.whenReady().then(() => {
+  createWindow()
+})

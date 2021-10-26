@@ -27,7 +27,7 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules/*"]
+      "@renderer/*": ["./packages/renderer/*"]
     }
   },
   "exclude": ["test", "dist"]

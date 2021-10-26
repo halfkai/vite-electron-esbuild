@@ -41,15 +41,13 @@ export const runElectron = async (
     await delay(500)
   }
 
-  // eslint-disable-next-line require-atomic-updates
-  electronProcess = childProcess.spawn('electron', [path])
+  electronProcess = childProcess.spawn('electron', [`${path}/main`])
   electronProcess.on('exit', async (code) => {
     if (!exitByScripts) {
-      console.log(chalk.gray(`Electron exited with code ${code}`))
+      console.log(chalk.gray(`[electron] exited with code ${code}`))
       await onClose()
       process.exit()
     }
-    // eslint-disable-next-line require-atomic-updates
     exitByScripts = true
   })
 

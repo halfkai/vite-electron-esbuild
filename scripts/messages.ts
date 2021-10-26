@@ -1,3 +1,3 @@
 import chalk from 'chalk'
 
-export const COMPILE_SUCC = chalk.green('Compile succeed.')
+export const COMPILE_SUCC = chalk.green('[electron] Compile succeed.')

@@ -75,3 +75,16 @@ export function formatDiagnosticsMessage (errors: CompileError[]): string {
 }
 
 export const delay = (duration: number) => new Promise((resolve) => setTimeout(resolve, duration))
+
+const argPattern = /^--.+=.+/
+
+/**
+ * format cmd line arguments
+ * @param str <--key=value>
+ * @returns <{key: value}>
+ */
+export const formatCMDArg = (str: string) => {
+  if (argPattern.test(str)) {
+    return { [str.replace(/(--|=.+)/g, '')]: str.replace(/--.+=/, '') }
+  }
+}

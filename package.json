@@ -5,12 +5,15 @@
   "repository": "https://github.com/kai475/ecap.git",
   "author": "kai475",
   "license": "MIT",
+  "main": "dist/electron/main/index.js",
   "scripts": {
     "dev": "rimraf dist && cross-env NODE_ENV=development node -r esbuild-register ./scripts/dev",
     "dev:renderer": "cross-env NODE_ENV=development node -r esbuild-register ./scripts/run-vite",
     "dev:main": "rimraf dist && cross-env NODE_ENV=development node -r esbuild-register ./scripts/run-electron",
     "build:renderer": "vite build --config packages/renderer/vite.config.ts",
-    "build:main": "cross-env NODE_ENV=development node -r esbuild-register ./scripts/build"
+    "build:win": "yarn build:renderer; cross-env NODE_ENV=development node -r esbuild-register ./scripts/build --platform=win32",
+    "build:mac": "cross-env NODE_ENV=development node -r esbuild-register ./scripts/build --platform=darwin",
+    "build:linux": "cross-env NODE_ENV=development node -r esbuild-register ./scripts/build --platform=linux"
   },
   "browserslist": [
     "Chrome 94"
@@ -32,6 +35,7 @@
     "child_process": "^1.0.2",
     "cross-env": "^7.0.3",
     "electron": "15.2.0",
+    "electron-builder": "^22.14.5",
     "esbuild": "^0.14.1",
     "esbuild-register": "^3.2.0",
     "eslint": "^7.12.1",

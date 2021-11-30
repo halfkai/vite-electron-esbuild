@@ -34,7 +34,7 @@ export const runElectron = async (
   path: string,
   onClose: () => Promise<void>
 ) => {
-  if (electronProcess) {
+  if (electronProcess?.pid) {
     process.kill(electronProcess.pid)
     exitByScripts = true
     electronProcess = null
